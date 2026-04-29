@@ -4,6 +4,12 @@ export const apiFetch = async (endpoint: string, options: RequestInit = {}) => {
   const headers = new Headers(options.headers || {});
   headers.set('Content-Type', 'application/json');
 
+  // Fallback for mobile browsers that block 3rd-party cookies
+  const token = localStorage.getItem('civictask_token');
+  if (token) {
+    headers.set('Authorization', `Bearer ${token}`);
+  }
+
   const response = await fetch(`${API_URL}${endpoint}`, {
     ...options,
     headers,
@@ -12,6 +18,7 @@ export const apiFetch = async (endpoint: string, options: RequestInit = {}) => {
 
   // Automatically log out if unauthorized
   if (response.status === 401 && endpoint !== '/auth/login' && endpoint !== '/auth/me') {
+    localStorage.removeItem('civictask_token');
     window.location.href = '/login';
     return null;
   }

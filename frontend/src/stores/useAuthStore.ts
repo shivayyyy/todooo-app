@@ -50,6 +50,7 @@ export const useAuthStore = create<AuthState>((set) => ({
       method: 'POST',
       body: JSON.stringify(credentials)
     });
+    if (res && res.token) localStorage.setItem('civictask_token', res.token);
     if (res && res.user) {
       set({ user: res.user, isAuthenticated: true });
     }
@@ -60,6 +61,7 @@ export const useAuthStore = create<AuthState>((set) => ({
       method: 'POST',
       body: JSON.stringify(data)
     });
+    if (res && res.token) localStorage.setItem('civictask_token', res.token);
     if (res && res.user) {
       set({ user: res.user, isAuthenticated: true });
     }
@@ -71,6 +73,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     } catch(err) {
       console.error('Logout error', err);
     }
+    localStorage.removeItem('civictask_token');
     set({ user: null, isAuthenticated: false });
     window.location.href = '/login';
   }
