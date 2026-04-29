@@ -45,13 +45,13 @@ export function EventModal() {
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
       style={{ background: 'rgba(10,15,30,0.8)', backdropFilter: 'blur(12px)' }}
       onClick={(e) => { if (e.target === overlayRef.current) closeModal(); }}
     >
-      {/* Card — slides up from bottom on mobile */}
+      {/* Card — centered on all screens */}
       <div
-        className="w-full sm:max-w-lg rounded-t-2xl sm:rounded-2xl border shadow-2xl flex flex-col max-h-[85vh]"
+        className="w-full sm:max-w-lg rounded-2xl border shadow-2xl flex flex-col max-h-[85vh]"
         style={{
           background: 'rgba(17,24,39,0.97)',
           backdropFilter: 'blur(24px)',
@@ -59,10 +59,7 @@ export function EventModal() {
           boxShadow: `0 0 0 1px rgba(42,52,71,0.5), 0 -8px 48px rgba(0,0,0,0.6), 0 0 60px ${typeColor}15`,
         }}
       >
-        {/* Pull bar (mobile) */}
-        <div className="flex justify-center pt-2 pb-1 sm:hidden shrink-0">
-          <div className="w-10 h-1 rounded-full" style={{ background: 'rgba(74,85,104,0.6)' }} />
-        </div>
+        {/* Pull bar (mobile) - removed since it's centered now */}
 
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-3 border-b shrink-0" style={{ borderColor: 'rgba(42,52,71,0.5)' }}>

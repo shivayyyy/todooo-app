@@ -230,8 +230,8 @@ function AddTaskModal({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 sm:p-4 pb-0 sm:pb-4" style={{ background: 'rgba(10,15,30,0.8)', backdropFilter: 'blur(12px)' }} onClick={onClose}>
-      <div className="w-full max-w-lg rounded-t-2xl sm:rounded-2xl border flex flex-col max-h-[85vh]" style={{ background: 'rgba(17,24,39,0.97)', borderColor: 'rgba(42,52,71,0.7)', boxShadow: '0 -8px 48px rgba(0,0,0,0.6)' }} onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(10,15,30,0.8)', backdropFilter: 'blur(12px)' }} onClick={onClose}>
+      <div className="w-full max-w-lg rounded-2xl border flex flex-col max-h-[85vh]" style={{ background: 'rgba(17,24,39,0.97)', borderColor: 'rgba(42,52,71,0.7)', boxShadow: '0 -8px 48px rgba(0,0,0,0.6)' }} onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between p-5 border-b shrink-0" style={{ borderColor: 'rgba(42,52,71,0.5)' }}>
           <h2 className="font-semibold text-text-hi">New Task</h2>
           <button onClick={onClose} className="p-1.5 rounded-lg text-text-low hover:text-text-hi hover:bg-elevated"><X size={16} /></button>
