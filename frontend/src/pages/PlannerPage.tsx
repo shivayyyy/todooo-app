@@ -230,27 +230,30 @@ function AddTaskModal({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4" style={{ background: 'rgba(10,15,30,0.8)', backdropFilter: 'blur(12px)' }} onClick={onClose}>
-      <div className="w-full max-w-lg rounded-2xl border p-6 flex flex-col gap-4" style={{ background: 'rgba(17,24,39,0.95)', borderColor: 'rgba(42,52,71,0.7)', boxShadow: '0 32px 80px rgba(0,0,0,0.6)' }} onClick={(e) => e.stopPropagation()}>
-        <div className="flex items-center justify-between">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 sm:p-4 pb-0 sm:pb-4" style={{ background: 'rgba(10,15,30,0.8)', backdropFilter: 'blur(12px)' }} onClick={onClose}>
+      <div className="w-full max-w-lg rounded-t-2xl sm:rounded-2xl border flex flex-col max-h-[85vh]" style={{ background: 'rgba(17,24,39,0.97)', borderColor: 'rgba(42,52,71,0.7)', boxShadow: '0 -8px 48px rgba(0,0,0,0.6)' }} onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center justify-between p-5 border-b shrink-0" style={{ borderColor: 'rgba(42,52,71,0.5)' }}>
           <h2 className="font-semibold text-text-hi">New Task</h2>
           <button onClick={onClose} className="p-1.5 rounded-lg text-text-low hover:text-text-hi hover:bg-elevated"><X size={16} /></button>
         </div>
-        <input value={form.title} onChange={(e) => set('title', e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleSave()} placeholder="Task title…" className="input-field text-base font-medium" autoFocus />
-        <div className="grid grid-cols-2 gap-3">
-          <select value={form.priority} onChange={(e) => set('priority', e.target.value as Priority)} className="input-field text-sm">
-            {Object.entries(PRIORITY_META).map(([k, v]) => <option key={k} value={k}>{v.label}</option>)}
+        
+        <div className="flex-1 overflow-y-auto p-5 flex flex-col gap-4">
+          <input value={form.title} onChange={(e) => set('title', e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleSave()} placeholder="Task title…" className="input-field text-base font-medium" autoFocus />
+          <div className="grid grid-cols-2 gap-3">
+            <select value={form.priority} onChange={(e) => set('priority', e.target.value as Priority)} className="input-field text-sm">
+              {Object.entries(PRIORITY_META).map(([k, v]) => <option key={k} value={k}>{v.label}</option>)}
+            </select>
+            <input type="date" value={form.dueDate} onChange={(e) => set('dueDate', e.target.value)} className="input-field text-sm" />
+          </div>
+          <select value={form.subject} onChange={(e) => set('subject', e.target.value as GSubject)} className="input-field text-sm">
+            <option value="">— No subject —</option>
+            {SUBJECTS.map((s) => <option key={s} value={s}>{s}</option>)}
           </select>
-          <input type="date" value={form.dueDate} onChange={(e) => set('dueDate', e.target.value)} className="input-field text-sm" />
-        </div>
-        <select value={form.subject} onChange={(e) => set('subject', e.target.value as GSubject)} className="input-field text-sm">
-          <option value="">— No subject —</option>
-          {SUBJECTS.map((s) => <option key={s} value={s}>{s}</option>)}
-        </select>
-        <textarea value={form.notes} onChange={(e) => set('notes', e.target.value)} rows={2} placeholder="Notes (optional)…" className="input-field text-sm resize-none" />
-        <div className="flex gap-3">
-          <button onClick={onClose} className="flex-1 py-2.5 rounded-xl border border-border text-text-mid hover:bg-elevated text-sm font-medium transition-all">Cancel</button>
-          <button onClick={handleSave} className="flex-1 py-2.5 rounded-xl text-sm font-semibold transition-all" style={{ background: 'linear-gradient(135deg,#C9A84C,#e8c870)', color: '#0A0F1E', boxShadow: '0 4px 16px rgba(201,168,76,0.35)' }}>Create Task</button>
+          <textarea value={form.notes} onChange={(e) => set('notes', e.target.value)} rows={3} placeholder="Notes (optional)…" className="input-field text-sm resize-none" />
+          <div className="flex gap-3 pt-2">
+            <button onClick={onClose} className="flex-1 py-3 rounded-xl border border-border text-text-mid hover:bg-elevated text-sm font-medium transition-all">Cancel</button>
+            <button onClick={handleSave} className="flex-1 py-3 rounded-xl text-sm font-semibold transition-all" style={{ background: 'linear-gradient(135deg,#C9A84C,#e8c870)', color: '#0A0F1E', boxShadow: '0 4px 16px rgba(201,168,76,0.35)' }}>Create Task</button>
+          </div>
         </div>
       </div>
     </div>

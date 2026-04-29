@@ -51,7 +51,7 @@ export function EventModal() {
     >
       {/* Card — slides up from bottom on mobile */}
       <div
-        className="w-full sm:max-w-lg rounded-t-2xl sm:rounded-2xl border shadow-2xl flex flex-col max-h-[92vh]"
+        className="w-full sm:max-w-lg rounded-t-2xl sm:rounded-2xl border shadow-2xl flex flex-col max-h-[85vh]"
         style={{
           background: 'rgba(17,24,39,0.97)',
           backdropFilter: 'blur(24px)',
