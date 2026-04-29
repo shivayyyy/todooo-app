@@ -55,6 +55,7 @@ export const authRoutes: FastifyPluginAsync = async (fastify) => {
       });
 
       return reply.send({ 
+        token,
         user: { id: user._id, username: user.username, phone: user.phone } 
       });
     } catch (err: any) {
@@ -94,13 +95,18 @@ export const authRoutes: FastifyPluginAsync = async (fastify) => {
     });
 
     return reply.send({
+      token,
       user: { id: user._id, username: user.username, phone: user.phone }
     });
   });
 
   // Logout
   fastify.post('/logout', async (request, reply) => {
-    reply.clearCookie('civictask_token', { path: '/' });
+    reply.clearCookie('civictask_token', { 
+      path: '/',
+      secure: true,
+      sameSite: 'none'
+    });
     return reply.send({ success: true });
   });
 
